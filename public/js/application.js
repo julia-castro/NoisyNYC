@@ -9,24 +9,19 @@ $(document).ready(function() {
     dataType: 'json',
     cache: true,
     success: function(data, textStatus, jqXHR){
-      L.marker([data[0].location.coordinates[1], data[0].location.coordinates[0]], {
-        icon: L.mapbox.marker.icon({
-          'marker-size': 'small',
-          'marker-color': '#f6546a'
-        })
-      }).addTo(map);
+      console.log(data[44])
+      // for (var i = 0; i < data.length; i++){
+      //   L.marker([data[i].latitude, data[i].longitude], {
+      //     icon: L.mapbox.marker.icon({
+      //       'marker-size': 'small',
+      //       'marker-color': '#f6546a'
+      //     })
+      //   }).addTo(map);
+      //   console.log(i)
+      // }
     },
     fail: function(jqXHR, textStatus, errorThrown){
       console.log(textStatus)
     }
   });
-
-
-  // L.marker([40.734883, -73.993673], {
-  //   icon: L.mapbox.marker.icon({
-  //     'marker-size': 'large',
-  //     'marker-color': '#f6546a'
-  //   })
-  // }).addTo(map);
-
 });
