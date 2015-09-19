@@ -3,6 +3,13 @@ $(document).ready(function() {
   var map = L.mapbox.map('map', 'jmcastro.cier6sgeg01h9silzqx44aeaw')
     .setView([40.7903, -73.9597], 13);
 
+      // L.marker([40.734883, -73.993673], {
+      //   icon: L.mapbox.marker.icon({
+      //     'marker-size': 'small',
+      //     'marker-color': '#f6546a'
+      //   })
+      // }).addTo(map).bindPopup("julia").openPopup();
+
   $.ajax({
     type: 'GET',
     url: 'https://data.cityofnewyork.us/resource/fhrw-4uyv.json?$where=latitude%20IS%20NOT%20NULL%20AND%20descriptor%20=%20%27Loud%20Music/Party%27',
@@ -16,7 +23,6 @@ $(document).ready(function() {
             'marker-color': '#f6546a'
           })
         }).addTo(map);
-        console.log(i)
       }
     },
     fail: function(jqXHR, textStatus, errorThrown){
