@@ -5,19 +5,16 @@ $(document).ready(function() {
 
   $.ajax({
     type: 'GET',
-    url: 'https://data.cityofnewyork.us/resource/erm2-nwe9.json?descriptor=Loud%20Music/Party',
+    url: 'https://data.cityofnewyork.us/resource/fhrw-4uyv.json?descriptor=Loud%20Music/Party',
     dataType: 'json',
     cache: true,
     success: function(data, textStatus, jqXHR){
-      L.marker([data[0].location.latitude, data[0].location.longitude], {
+      L.marker([data[0].location.coordinates[1], data[0].location.coordinates[0]], {
         icon: L.mapbox.marker.icon({
           'marker-size': 'small',
           'marker-color': '#f6546a'
         })
       }).addTo(map);
-
-      console.log(data[0].location.latitude)
-      console.log(data[0].location.longitude)
     },
     fail: function(jqXHR, textStatus, errorThrown){
       console.log(textStatus)
