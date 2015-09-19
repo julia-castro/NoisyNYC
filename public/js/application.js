@@ -5,20 +5,19 @@ $(document).ready(function() {
 
   $.ajax({
     type: 'GET',
-    url: 'https://data.cityofnewyork.us/resource/fhrw-4uyv.json?descriptor=Loud%20Music/Party',
+    url: 'https://data.cityofnewyork.us/resource/fhrw-4uyv.json?$where=latitude%20IS%20NOT%20NULL%20AND%20descriptor%20=%20%27Loud%20Music/Party%27',
     dataType: 'json',
     cache: true,
     success: function(data, textStatus, jqXHR){
-      console.log(data[44])
-      // for (var i = 0; i < data.length; i++){
-      //   L.marker([data[i].latitude, data[i].longitude], {
-      //     icon: L.mapbox.marker.icon({
-      //       'marker-size': 'small',
-      //       'marker-color': '#f6546a'
-      //     })
-      //   }).addTo(map);
-      //   console.log(i)
-      // }
+      for (var i = 0; i < data.length; i++){
+        L.marker([data[i].latitude, data[i].longitude], {
+          icon: L.mapbox.marker.icon({
+            'marker-size': 'small',
+            'marker-color': '#f6546a'
+          })
+        }).addTo(map);
+        console.log(i)
+      }
     },
     fail: function(jqXHR, textStatus, errorThrown){
       console.log(textStatus)
