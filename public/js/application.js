@@ -10,7 +10,6 @@ $(document).ready(function() {
     cache: true,
     success: function(data, textStatus, jqXHR){
       for (var i = 0; i < data.length; i++){
-      console.log(i)
         L.marker([data[i].latitude, data[i].longitude], {
           icon: L.mapbox.marker.icon({
             'marker-size': 'small',
@@ -19,7 +18,23 @@ $(document).ready(function() {
         }).bindPopup("This noise complaint was created on " + data[i].created_date + " at " + data[i].incident_address + " at a " + data[i].location_type).openPopup().addTo(map).on('click', function(e){
           map.panTo(e.latlng)
         });
-      }
+      };
+
+      var autocomplete = new google.maps.places.Autocomplete(
+      (document.getElementById('autocomplete')));
+
+      google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        var userInputLocation = [autocomplete.getPlace().geometry.location.lat(),autocomplete.getPlace().geometry.location.lng()];
+
+        L.marker(userInputLocation, {
+          icon: L.mapbox.marker.icon({
+            'marker-size': 'large',
+            'marker-color': '#05AEDE'
+          })
+        }).addTo(map);
+
+        map.panTo(L.latLng(userInputLocation[0], userInputLocation[1]))
+      });
     },
     fail: function(jqXHR, textStatus, errorThrown){
       console.log(textStatus)
