@@ -23,8 +23,8 @@ $(document).ready(function() {
             'marker-color': '#f6546a'
           })
         }).addTo(map).on('click', function(e){
-          // debugger
           map.panTo(e.latlng);
+          // need marker pop up with created_at, location_type, and reverse geocoding with lat/lng
         });
       }
     },
