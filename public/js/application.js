@@ -10,13 +10,15 @@ $(document).ready(function() {
     cache: true,
     success: function(data, textStatus, jqXHR){
       for (var i = 0; i < data.length; i++){
+      console.log(i)
         L.marker([data[i].latitude, data[i].longitude], {
           icon: L.mapbox.marker.icon({
             'marker-size': 'small',
             'marker-color': '#f6546a'
           })
-        }).addTo(map);
-        console.log(i)
+        }).bindPopup("This noise complaint was created on " + data[i].created_date + " at " + data[i].incident_address + " at a " + data[i].location_type).openPopup().addTo(map).on('click', function(e){
+          map.panTo(e.latlng)
+        });
       }
     },
     fail: function(jqXHR, textStatus, errorThrown){
