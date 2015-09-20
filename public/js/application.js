@@ -18,20 +18,26 @@ $(document).ready(function() {
         }).bindPopup("This noise complaint was created on " + data[i].created_date + " at " + data[i].incident_address + " at a " + data[i].location_type).openPopup().addTo(map).on('click', function(e){
           map.panTo(e.latlng)
         });
-      }
+      };
+
+      var autocomplete = new google.maps.places.Autocomplete(
+      (document.getElementById('autocomplete')));
+
+      google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        var userInputLocation = [autocomplete.getPlace().geometry.location.lat(),autocomplete.getPlace().geometry.location.lng()];
+
+        L.marker(userInputLocation, {
+          icon: L.mapbox.marker.icon({
+            'marker-size': 'large',
+            'marker-color': '#05AEDE'
+          })
+        }).addTo(map);
+
+        map.panTo(L.latLng(userInputLocation[0], userInputLocation[1]))
+      });
     },
     fail: function(jqXHR, textStatus, errorThrown){
       console.log(textStatus)
     }
   });
-
-
-  var autocomplete = new google.maps.places.Autocomplete(
-      (document.getElementById('autocomplete')));
-  google.maps.event.addListener(autocomplete, 'place_changed', function() {
-      var userInputLocation = [autocomplete.getPlace().geometry.location.lat(),autocomplete.getPlace().geometry.location.lng()]
-      console.log(userInputLocation)
-  });
-
-
 });
