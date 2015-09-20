@@ -24,4 +24,14 @@ $(document).ready(function() {
       console.log(textStatus)
     }
   });
+
+
+  var autocomplete = new google.maps.places.Autocomplete(
+      (document.getElementById('autocomplete')));
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      var userInputLocation = [autocomplete.getPlace().geometry.location.lat(),autocomplete.getPlace().geometry.location.lng()]
+      console.log(userInputLocation)
+  });
+
+
 });
