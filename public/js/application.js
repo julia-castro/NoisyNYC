@@ -10,7 +10,6 @@ $(document).ready(function() {
     cache: true,
     success: function(data, textStatus, jqXHR){
       for (var i = 0; i < data.length; i++){
-      console.log(i)
         L.marker([data[i].latitude, data[i].longitude], {
           icon: L.mapbox.marker.icon({
             'marker-size': 'small',
