@@ -22,7 +22,10 @@ $(document).ready(function() {
             'marker-size': 'small',
             'marker-color': '#f6546a'
           })
-        }).addTo(map);
+        }).addTo(map).on('click', function(e){
+          // debugger
+          map.panTo(e.latlng);
+        });
       }
     },
     fail: function(jqXHR, textStatus, errorThrown){
