@@ -35,3 +35,11 @@ p {
 ::-webkit-input-placeholder {
   font-size: 12px;
 }
+
+input[type="text"] {
+  font-size: 12px;
+}
+
+#autocomplete {
+  width: 210px;
+}
